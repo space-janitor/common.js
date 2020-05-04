@@ -33,7 +33,8 @@ class Common {
   initialize(config = { logging: this.defaultLg4JSConfiguration }) {
     return new Promise((resolve, reject) => {
       try {
-        if (config.logging) {
+        this._config = config
+        if (this._config.logging) {
           this.initializeLogging(config.logging).then(() => {
             resolve()
           })
