@@ -2,15 +2,16 @@
 const Common = require('../src/index')
 
 describe('Common Test', () => {
-  it('Initialize should succeed', () => {
+  it('Default initialize should succeed', () => {
     Common.initialize().then(() => {
       expect(true)
     })
   })
-  it('Initialize should fail', () => {
-    Common.config = null
-    Common.initialize({}).catch((err) => {
-      expect(err).toBeDefined()
+  it('Initialize with coinfig should succeed', () => {
+    const config = { test: true }
+
+    Common.initialize(config).then(() => {
+      expect(Common.configuration).objectContaining(config)
     })
   })
   it('Clonned objects match', () => {
